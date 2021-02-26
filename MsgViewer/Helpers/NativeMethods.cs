@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace MsgViewer.Helpers
 {
     #region Public static class NativeMethods
-    public static class NativeMethods
+    public class NativeMethods // static class breaks serialization on .NET 4.0
     {
         #region Structures
         /// <summary>
