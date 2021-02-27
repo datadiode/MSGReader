@@ -15,5 +15,9 @@ environment:
 before_build:
 - nuget restore
 
+build-script:
+- for /f "tokens=1,* delims=-" %%a in ('"git describe --tags --long"') do set version_suffix=-%%b
+- dotnet build MsgReader.sln --version-suffix "%version_suffix%"
+
 artifacts:
 - path: MsgReaderCore\bin\$(configuration)\*.nupkg
