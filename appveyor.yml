@@ -1,0 +1,19 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+configuration:
+- Debug
+- Release
+
+platform: Any CPU
+
+test: off
+
+environment:
+  EnableNuGetPackageRestore: true
+
+before_build:
+- nuget restore
+
+artifacts:
+- path: MsgReaderCore\bin\$(configuration)\*.nupkg
