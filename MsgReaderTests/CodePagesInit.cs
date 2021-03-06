@@ -1,15 +1,16 @@
 ﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using NUnit.Framework;
 
 namespace MsgReaderTests
 {
-    [TestClass]
+    [TestFixture]
     public class CodePagesInit
     {
-        [AssemblyInitialize]
+        //[AssemblyInitialize]
         public static void AssemblyInit(TestContext context)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using MsgReader;
 
 namespace MsgReaderTests
@@ -19,16 +19,16 @@ namespace MsgReaderTests
          * examples in this test.
          */
 
-    [TestClass]
+    [TestFixture]
     public class BasicContentTests
     {
         private static readonly Regex HtmlSimpleCleanup = new Regex(@"<[^>]*>", RegexOptions.Compiled);
         private const string SampleText = "Heavens! what a virulent attack!";
 
-        [TestMethod]
+        [Test]
         public void Html_Content_Test()
         {
-            using (Stream fileStream = File.OpenRead(Path.Combine("SampleFiles", "HtmlSampleEmail.msg")))
+            using (Stream fileStream = File.OpenRead(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "HtmlSampleEmail.msg")))
             {
                 var msgReader = new Reader();
                 var content = msgReader.ExtractMsgEmailBody(fileStream, ReaderHyperLinks.Both, null);
@@ -37,10 +37,10 @@ namespace MsgReaderTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Rtf_Content_Test()
         {
-            using (Stream fileStream = File.OpenRead(Path.Combine("SampleFiles", "RtfSampleEmail.msg")))
+            using (Stream fileStream = File.OpenRead(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "RtfSampleEmail.msg")))
             {
                 var msgReader = new Reader();
                 var content = msgReader.ExtractMsgEmailBody(fileStream, ReaderHyperLinks.Both, null);
@@ -49,10 +49,10 @@ namespace MsgReaderTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void PlainText_Content_Test()
         {
-            using (Stream fileStream = File.OpenRead(Path.Combine("SampleFiles", "TxtSampleEmail.msg")))
+            using (Stream fileStream = File.OpenRead(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "TxtSampleEmail.msg")))
             {
                 var msgReader = new Reader();
                 var content = msgReader.ExtractMsgEmailBody(fileStream, ReaderHyperLinks.Both, null);

@@ -1,28 +1,28 @@
 ﻿using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using MsgReader;
 
 namespace MsgReaderTests
 {
-    [TestClass]
+    [TestFixture]
     public class LoadTest
     {
         private DirectoryInfo _tempDirectory;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             _tempDirectory = Directory.CreateDirectory(tempDirectory);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             _tempDirectory.Delete(true);
         }
 
-        [TestMethod]
+        [Test]
         public void Extract_100_Times()
         {
             for (var i = 0; i < 100; i++)
@@ -30,7 +30,7 @@ namespace MsgReaderTests
                 var msgReader = new Reader();
                 var tempDirectory =
                     Directory.CreateDirectory(Path.Combine(_tempDirectory.FullName, Path.GetRandomFileName()));
-                msgReader.ExtractToFolder(Path.Combine("SampleFiles", "EmailWithAttachments.msg"), tempDirectory.FullName);
+                msgReader.ExtractToFolder(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "EmailWithAttachments.msg"), tempDirectory.FullName);
             }
         }
     }

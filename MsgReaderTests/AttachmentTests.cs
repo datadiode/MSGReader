@@ -2,7 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using MsgReader;
 
 namespace MsgReaderTests
@@ -23,17 +23,17 @@ namespace MsgReaderTests
      * directory name by deleting the new file and creating a dir in its place
      */
 
-    [TestClass]
+    [TestFixture]
     public class AttachmentTests
     {
         private static readonly string _knownSha1 = "600F7BED593588956BFC3CFEEFEC12506120B653";
 
-        [TestMethod]
+        [Test]
         public void Html_Single_Attachment_Test()
         {
             var reader = new Reader();
             var tempDirPath = GetTempDir();
-            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine("SampleFiles", "HtmlSampleEmailWithAttachment.msg"),
+            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "HtmlSampleEmailWithAttachment.msg"),
                 tempDirPath);
 
             var sha1S = new List<string>();
@@ -46,12 +46,12 @@ namespace MsgReaderTests
             Assert.IsTrue(sha1S.Contains(_knownSha1));
         }
 
-        [TestMethod]
+        [Test]
         public void Rtf_Single_Attachment_Test()
         {
             var reader = new Reader();
             var tempDirPath = GetTempDir();
-            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine("SampleFiles", "RtfSampleEmailWithAttachment.msg"),
+            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "RtfSampleEmailWithAttachment.msg"),
                 tempDirPath);
 
             var sha1S = new List<string>();
@@ -64,12 +64,12 @@ namespace MsgReaderTests
             Assert.IsTrue(sha1S.Contains(_knownSha1));
         }
 
-        [TestMethod]
+        [Test]
         public void Txt_Single_Attachment_Test()
         {
             var reader = new Reader();
             var tempDirPath = GetTempDir();
-            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine("SampleFiles", "TxtSampleEmailWithAttachment.msg"),
+            IEnumerable<string> outputFiles = reader.ExtractToFolder(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "TxtSampleEmailWithAttachment.msg"),
                 tempDirPath);
 
             var sha1S = new List<string>();

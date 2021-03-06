@@ -1,18 +1,18 @@
 ﻿
 using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using MsgReader.Outlook;
 
 namespace MsgReaderTests
 {
-    [TestClass]
+    [TestFixture]
     public class RemoveAttachmentTests
     {
-        [TestMethod]
+        [Test]
         public void RemoveAttachments()
         {
-            using (var inputStream = File.OpenRead(Path.Combine("SampleFiles", "EmailWith2Attachments.msg")))
+            using (var inputStream = File.OpenRead(Path.Combine(TestContext.CurrentContext.TestDirectory, "SampleFiles", "EmailWith2Attachments.msg")))
             using (var inputMessage = new Storage.Message(inputStream, FileAccess.ReadWrite))
             {
                 var attachments = inputMessage.Attachments.ToList();
