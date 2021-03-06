@@ -80,7 +80,7 @@ namespace MsgReaderTests
                 Assert.AreEqual("\u62C9\u52FE\u7F51 <service@email.lagou.com>", From);
                 Assert.AreEqual("tonyqus@163.com", To);
                 Assert.AreEqual("\u4E0A\u6D77\u5206\u4F17\u5FB7\u5CF0\u5E7F\u544A\u4F20\u64AD\u6709\u9650\u516C\u53F8-\u9AD8\u7EA7.NET\u8F6F\u4EF6\u5DE5\u7A0B\u5E08\u62DB\u8058\u53CD\u9988\u901A\u77E5", Subject);
-                Assert.IsTrue(HtmlBody.StartsWith("<html>\r\n"));
+                Assert.AreEqual("<html>\r\n", HtmlBody.Substring(0, 8));
                 Assert.IsNull(TextBody);
             }
         }
