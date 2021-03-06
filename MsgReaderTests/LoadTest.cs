@@ -23,9 +23,9 @@ namespace MsgReaderTests
         }
 
         [TestMethod]
-        public void Extract_10000_Times()
+        public void Extract_100_Times()
         {
-            for (var i = 0; i < 10000; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var msgReader = new Reader();
                 var tempDirectory =
