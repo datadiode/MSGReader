@@ -571,7 +571,7 @@ namespace MsgReader.Mime
 		/// <returns>The <see cref="Body"/> property as a string</returns>
 		public string GetBodyAsText()
 		{
-			return BodyEncoding.GetString(Body);
+			return Encoding.ASCII.GetString(Body); //BodyEncoding.GetString(Body);
 		}
         #endregion
 
